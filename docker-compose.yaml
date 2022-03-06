@@ -1,4 +1,13 @@
 version: "3"
 services:
   client:
-    image: ""
+    image: "melikdaye/deep-somnia-client"
+    hostname: client
+  server:
+    image: "melikdaye/deep-somnia-server"
+    hostname: api
+  nginx:
+    image: "melikdaye/deep-somnia-nginx"
+    hostname: nginx
+    ports:
+      - "80:80"

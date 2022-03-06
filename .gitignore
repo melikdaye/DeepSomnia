@@ -1,0 +1,3 @@
+# Project exclude paths
+/node_server/node_modules/
+/deep_somnia_react/.env

@@ -25,5 +25,6 @@ jobs:
           application_name: DeepSomnia
           environment_name: Deepsomnia-env
           region: us-central-1
+          bucket_name : elasticbeanstalk-eu-central-1-353150515107
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip

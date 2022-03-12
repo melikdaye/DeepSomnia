@@ -1,0 +1,7 @@
+{
+    "AWSEBDDockerrunVersion": 3,
+    "Authentication": {
+        "bucket": "deepsomnia",
+        "key": ".dockercfg"
+      }
+}

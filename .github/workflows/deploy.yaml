@@ -17,14 +17,15 @@ jobs:
 #       - run: docker push melikdaye/deep-somnia-server
 #       - run: docker push melikdaye/deep-somnia-nginx
       - name: Create ZIP deployment package
-        run: zip -r deploy_package.zip ./
+        run: zip -r deploy_package.zip . -x '*.git*'
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v16
+        uses: einaregilsson/beanstalk-deploy@v20
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: DeepSomnia
           environment_name: Deepsomnia-env
           region: us-central-1
+          existing_bucket_name : elasticbeanstalk-eu-central-1-353150515107
           version_label: ${{ github.sha }}
           deployment_package: deploy_package.zip

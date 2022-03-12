@@ -1,7 +1,7 @@
 version: "3"
 services:
   client:
-    image: "melikdaye/deep_somnia_client"
+    image: "melikdaye/deep-somnia-client"
     hostname: client
   server:
     image: "melikdaye/deep-somnia-server"

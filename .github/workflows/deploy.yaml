@@ -17,7 +17,7 @@ jobs:
 #       - run: docker push melikdaye/deep-somnia-server
 #       - run: docker push melikdaye/deep-somnia-nginx
       - name: Create ZIP deployment package
-        run: zip -r deploy_package.zip . -x '*.git*'
+        run: zip -r deploy_package.zip  docker-compose.yaml Dockerrun.aws.json
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:

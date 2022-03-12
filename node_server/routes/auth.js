@@ -5,7 +5,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
 const {OAuth2Client} = require("google-auth-library")
-const {response} = require("express");
+const Token = require("../models/tokenModel");
+const sendEmail = require("../utils/mailEngine");
+const  {nanoid} = require("nanoid");
+const {getNodeServerName} = require("../utils/domainName");
 const router = express.Router();
 const client = new OAuth2Client(process.env.GOOGLE_API_CLIENT_ID);
 
@@ -36,6 +39,7 @@ router.post('/login', [
         const { email, password } = req.body;
 
         try {
+
             let user = await userModel.findOne({
                 email
             });
@@ -43,6 +47,19 @@ router.post('/login', [
                 return res.status(400).json({
                     message: "User Not Exist"
                 });
+
+            if(!user.isVerified){
+                let token = await new Token({
+                    userId: user._id,
+                    token: nanoid(64),
+                }).save();
+
+                const message = `${getNodeServerName(req)}/verify/${user.id}/${token.token}`
+                await sendEmail(user.email, "Verify Email", message);
+                return res.status(400).json({
+                    message: "An Email sent to your account please verify"
+                });
+            }
 
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch)

@@ -41,7 +41,7 @@ export default function NavPills(props) {
       centered={alignCenter}
       onClick = {onTabClick}
     >
-      {tabs.map((prop, key) => {
+      {React.Children.toArray(tabs.map((prop, key) => {
         var icon = {};
         if (prop.tabIcon !== undefined) {
           icon["icon"] = <prop.tabIcon className={classes.tabIcon} />;
@@ -63,12 +63,12 @@ export default function NavPills(props) {
             }}
           />
         );
-      })}
+      }))}
     </Tabs>
   );
   const tabContent = (
     <div className={classes.contentWrapper}>
-      {tabs.map((prop, key) => {
+      {React.Children.toArray(tabs.map((prop, key) => {
         if (key === active) {
           return (
             <div className={classes.tabContent} key={key}>
@@ -77,7 +77,7 @@ export default function NavPills(props) {
           );
         }
         return null;
-      })}
+      }))}
     </div>
   );
   return horizontal !== undefined ? (

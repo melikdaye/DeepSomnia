@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect} from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -17,36 +17,28 @@ import NavPills from "../components/NavPills/NavPills.js";
 import Parallax from "../components/Parallax/Parallax.js";
 import styles from "../assets/jss/material-kit-react/views/profilePage.js";
 import background from "../assets/img/bg-whale.png";
-import {AccountBox, Add, ImageOutlined, Settings} from "@material-ui/icons";
-import {Input, Snackbar, TextField} from "@material-ui/core";
-import {UserContext} from "../contextAPI/contexts/user";
+import {Add, LockRounded, Settings} from "@material-ui/icons";
+import {Snackbar, TextField} from "@material-ui/core";
 import axios from "axios";
-import {Link, NavLink, Redirect, Route,Switch,BrowserRouter as Router} from "react-router-dom";
+import {Link,Redirect} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
-import {setCurrentUser} from "../redux/actions/user";
-import {setAuthState} from "../redux/actions/auth";
 import {connect} from "react-redux";
-import NftPage from "./NftPage";
 import {setNFTs} from "../redux/actions/NFTs";
-import ProtectedRoute from "../components/ProtectedRoute/protectedRoute";
-import LoginView from "./LoginPage/LoginPage";
-import {unmountComponentAtNode} from "react-dom";
 import {getServer} from "../utils/getServerName";
+import ResetPass from "./ResetPass";
 
 const useStyles = makeStyles(styles);
 
 const ProfilePage = (props) =>  {
   const classes = useStyles();
   const { ...rest } = props;
-  // const {userInfo,auth} = useContext(UserContext);
   const userInfo = props.currentUser;
   const auth = props.auth;
   const NFTs = props.NFTs;
   const [dream,setDream] = React.useState("");
   const [response,setResponse] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  console.log(props)
 
   const getNFTs = async () =>{
       try {
@@ -58,10 +50,8 @@ const ProfilePage = (props) =>  {
       }
   }
 
-  useEffect(async ()=>{
-
-            await getNFTs()
-            props.history.push("/profile")
+  useEffect( ()=>{
+            getNFTs().then(props.history.push("/profile"))
 
   },[])
 
@@ -238,6 +228,19 @@ const ProfilePage = (props) =>  {
                                               tabContent: (
                                                   <GridContainer justifyContent="center">
                                                       <GridItem xs={12} sm={12} md={4}>
+                                                          <NavPills
+                                                              alignCenter
+                                                              color="primary"
+                                                              tabs={[
+                                                                  {
+                                                                      tabButton: "Password",
+                                                                      tabIcon: LockRounded,
+                                                                      tabContent: (
+
+                                                          <ResetPass {...props} userInfo={userInfo} reqOldPass={true} />
+                                                                          )}]
+                                                                }
+                                                              />
                                                       </GridItem>
                                                   </GridContainer>
                                               ),

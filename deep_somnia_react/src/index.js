@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {getServer} from "./utils/getServerName";
+
+if (getServer() === "api")
+    console.log = () => {};
 
 ReactDOM.render(
   <React.StrictMode>

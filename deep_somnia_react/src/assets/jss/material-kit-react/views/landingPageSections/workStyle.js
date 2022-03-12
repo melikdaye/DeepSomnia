@@ -7,7 +7,6 @@ const workStyle = {
   marketPlace:{
     width : "100%",
     height : "1000px",
-    marginLeft: "1%",
     padding: "70px 0",
     overflow: "hidden",
   },

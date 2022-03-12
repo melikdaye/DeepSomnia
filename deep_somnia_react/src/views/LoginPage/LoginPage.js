@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Email from "@material-ui/icons/Email";
@@ -15,7 +15,6 @@ import axios from 'axios';
 import image from "assets/img/bg-login.png";
 import {LockOutlined} from "@material-ui/icons";
 import styles1 from "assets/jss/material-kit-react/components/headerLinksStyle.js";
-import {UserContext} from "contextAPI/contexts/user";
 import {Redirect} from "react-router-dom";
 import setAuthToken from "utils/setAuthToken";
 import {connect} from "react-redux";
@@ -23,8 +22,6 @@ import {setCurrentUser} from "../../redux/actions/user";
 import {setAuthState} from "../../redux/actions/auth";
 import Register from "./Sections/register";
 import Reset from "./Sections/resetPassword";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
 import GoogleLogin from "react-google-login";
 import {getServer} from "../../utils/getServerName";
 const useStyles = makeStyles(styles);
@@ -67,7 +64,7 @@ const LoginView = (props) => {
     const [email,setEmail] = React.useState("");
     const [error,setError] = React.useState(false);
     const [viewState,setViewState] = React.useState(0);
-
+    const [generalResponse,setGeneralResponse]= React.useState("");
 
     const passwordHandle = (e) => {
        setPassword(e.target.value);
@@ -96,6 +93,7 @@ const LoginView = (props) => {
               })
               .catch(error => {
                   setError(true);
+                  setGeneralResponse(error.response.data.message)
               });
             e.preventDefault()
       }
@@ -130,7 +128,7 @@ const LoginView = (props) => {
     }, 700);
     const classes = useStyles();
     if(props.auth) {
-        return (<Redirect to="/profile"></Redirect>)
+        return (<Redirect to="/profile"/>)
     }
     else {
         return (
@@ -151,9 +149,11 @@ const LoginView = (props) => {
                                     {(() => {
                                         switch (viewState){
                                             case 0:
+                                            default:
                                                 return(
                                                     <form className={classes.form} onSubmit={(event) => submit(event, "auth/login")}>
                                                         <h4 align="center">Login</h4>
+                                                        <h6 align="center" style={{color:"red"}}>{generalResponse}</h6>
                                                         <CardBody>
                                                             <CustomInput
                                                                 labelText="Email"

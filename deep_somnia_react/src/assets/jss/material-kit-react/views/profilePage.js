@@ -1,7 +1,6 @@
 import { container, title } from "../../material-kit-react.js";
 
 import imagesStyle from "../imagesStyles.js";
-import {hover} from "@testing-library/user-event/dist/hover";
 
 const profilePageStyle = {
   container,

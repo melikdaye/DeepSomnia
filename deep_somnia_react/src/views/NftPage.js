@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "../components/Header/Header.js";
@@ -17,7 +17,6 @@ import {
     CancelOutlined,
     DeleteOutlined,
     CloudDownloadOutlined,
-    FileCopyOutlined,
     SaveAltOutlined,
     CloudUploadOutlined,
     InfoOutlined,
@@ -26,15 +25,14 @@ import {
 import {
     Accordion,
     AccordionDetails,
-    AccordionSummary, CardActions, CardContent, Card,
+    AccordionSummary, CardContent, Card,
     TextField,
-    Typography, CardHeader, Input, Checkbox, FormControlLabel, Select, FormControl, MenuItem, Snackbar, Button, Tooltip
+    Typography, Checkbox, FormControlLabel, Select, FormControl, MenuItem, Snackbar, Button, Tooltip
 } from "@material-ui/core";
 import axios from "axios";
-import {Link, Redirect, useLocation} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import {connect} from "react-redux";
-import Divider from "@material-ui/core/Divider";
 import {selectNFTbyID} from "../redux/selectors/nftSelector";
 import {
     addAttributeNFTByID,
@@ -100,12 +98,14 @@ const NftPage = (props) =>  {
         }
     }
 
-    useEffect(async () => {
-        const {address, status} = await getCurrentWalletConnected();
-        setWallet(address)
-        setWalletStatus(status);
-
-        addWalletListener();
+    useEffect( () => {
+        async function checkWalletConnection() {
+            const {address, status} = await getCurrentWalletConnected();
+            setWallet(address)
+            setWalletStatus(status);
+            addWalletListener();
+        }
+        checkWalletConnection();
     }, []);
 
 

@@ -1,4 +1,3 @@
-import {grayColor} from "../../material-kit-react";
 
 const cardBodyStyle = {
   cardBody: {

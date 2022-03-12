@@ -3,7 +3,6 @@ import ReactPortal from "./ReactPortal";
 import styles from "./modalStyle";
 import {makeStyles} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import {AddBoxRounded} from "@material-ui/icons";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles(styles);

@@ -4,25 +4,21 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-// @material-ui/icons
-
 // core components
 import GridContainer from "../../../components/Grid/GridContainer.js";
 import GridItem from "../../../components/Grid/GridItem.js";
-import Button from "../../../components/CustomButtons/Button.js";
 import Card from "../../../components/Card/Card.js";
 import CardBody from "../../../components/Card/CardBody.js";
-import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
 
-import team1 from "../../../assets/img/digital-wallet.png";
-import team2 from "../../../assets/img/starry-night.png";
-import team3 from "../../../assets/img/nft.png";
+import pic1 from "../../../assets/img/digital-wallet.png";
+import pic2 from "../../../assets/img/starry-night.png";
+import pic3 from "../../../assets/img/nft.png";
 
 const useStyles = makeStyles(styles);
 
-export default function TeamSection() {
+export default function OverView() {
   const classes = useStyles();
   const imageClasses = classNames(
     classes.imgRaised,
@@ -35,7 +31,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team1} alt="..." className={imageClasses} />
+                <img src={pic1} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                  Fill your Somnia wallet
@@ -51,7 +47,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain  >
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team2} alt="..." className={imageClasses} />
+                <img src={pic2} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                 Generate NFTs
@@ -67,7 +63,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team3} alt="..." className={imageClasses} />
+                <img src={pic3} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                  Download and sell your NFTs

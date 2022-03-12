@@ -1,4 +1,4 @@
-import profilePageStyle from "../../assets/jss/material-kit-react/views/profilePage";
+
 
 const modalStyle = {
 

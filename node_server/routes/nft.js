@@ -3,15 +3,10 @@ const router = express.Router();
 const auth = require("../middlewares/auth");
 const nftModel = require("../models/nftModel")
 const userModel = require("../models/userModel")
-const { isEmpty } = require("lodash");
-const mongoose = require('mongoose');
-const {json} = require("express");
 const AWS = require("aws-sdk");
 const axios = require('axios');
 const FormData = require('form-data');
-const {body} = require("express-validator");
 const bcrypt = require("bcryptjs");
-const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
 
 router.post("/:id/editName/:name",auth,async (req,res) => {
     try {
@@ -133,7 +128,7 @@ router.post("/:id/pinPinata",auth,async (req,res) => {
                 console.log(awsParams)
 
 
-                let readStream = null;
+                let readStream;
 
                 readStream = s3.getObject(awsParams).createReadStream();
                 console.log(readStream)
@@ -308,6 +303,5 @@ router.post("/addTxHash/:id",auth,async (req,res) => {
     }
 
 })
-
 
 module.exports = router;

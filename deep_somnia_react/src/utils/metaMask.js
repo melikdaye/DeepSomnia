@@ -1,16 +1,15 @@
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-
+require("dotenv").config()
 export const connectWallet = async () => {
     if (window.ethereum) {
         try {
             const addressArray = await window.ethereum.request({
                 method: "eth_requestAccounts",
             });
-            const obj = {
+            return {
                 status: "👆🏽 Write a message in the text-field above.",
                 address: addressArray[0],
             };
-            return obj;
         } catch (err) {
             return {
                 address: "",
@@ -80,9 +79,9 @@ export const getCurrentWalletConnected = async () => {
 
 export const mintNFT = async(metadatURL) => {
 
-    const contract = require(window.env.CONTRACT_JSON)
-    const contractAddress = window.env.CONTRACT_ADRESS
-    const web3 = createAlchemyWeb3(window.env.ALCHEMY_API_URL);
+    const contract = require("assets/contracts/rinkebyDS.json")
+    const contractAddress = "0x72c7dE95A392dD3dDDa106cfbEbFB2BDA33c72e2"
+    const web3 = createAlchemyWeb3("https://eth-rinkeby.alchemyapi.io/v2/3EJw_bZPG-vVRn1slx4WuHjFhWmQ_Neu");
     window.contract = await new web3.eth.Contract(contract.abi, contractAddress);
 
     //set up your Ethereum transaction

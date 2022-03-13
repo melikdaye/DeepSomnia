@@ -1,13 +1,13 @@
 version: "3"
 services:
   client:
-    image: "melikdaye/deep-somnia-client"
+    image: "353150515107.dkr.ecr.eu-central-1.amazonaws.com/deepsomnia/deep-somnia-client"
     hostname: client
   server:
-    image: "melikdaye/deep-somnia-server"
+    image: "353150515107.dkr.ecr.eu-central-1.amazonaws.com/deepsomnia/deep-somnia-server"
     hostname: api
   nginx:
-    image: "melikdaye/deep-somnia-nginx"
+    image: "353150515107.dkr.ecr.eu-central-1.amazonaws.com/deepsomnia/deep-somnia-nginx"
     hostname: nginx
     ports:
       - "80:80"

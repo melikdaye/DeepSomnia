@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: create env file
+      - name: Create server env file
         run: |
             touch ./node_server/.env
             echo DB_URI=${{ secrets.DB_URI }} >> ./node_server/.env
@@ -28,6 +28,8 @@ jobs:
             echo MAIL_SERVICE=${{ secrets.MAIL_SERVICE }} >> ./node_server/.env
             echo APP_MAIL=${{ secrets.APP_MAIL }} >> ./node_server/.env
             echo APP_MAIL_PASSWORD=${{ secrets.APP_MAIL_PASSWORD }} >> ./node_server/.env
+      - name: Create client env file
+        run: |
             touch ./deep_somnia_react/.env
             echo CONTRACT_JSON=${{ secrets.CONTRACT_JSON }} >> ./deep_somnia_react/.env
             echo CONTRACT_ADRESS=${{ secrets.CONTRACT_ADRESS }} >> ./deep_somnia_react/.env

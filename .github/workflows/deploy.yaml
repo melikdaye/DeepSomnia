@@ -21,8 +21,7 @@ jobs:
             echo MQTT_SERVER_IP=${{ secrets.MQTT_SERVER_IP }} >> ./node_server/.env
             echo MQTT_SERVER_PORT=${{ secrets.MQTT_SERVER_PORT }} >> ./node_server/.env
             echo MQTT_USERNAME=${{ secrets.MQTT_USERNAME }} >> ./node_server/.env
-
-            echo JWT_KEY=${{ secrets.JWT_KEY }} >> ./node_server/.env
+            echo MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }} >> ./node_server/.env
             echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./node_server/.env
             echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./node_server/.env
             echo MAIL_SERVICE=${{ secrets.MAIL_SERVICE }} >> ./node_server/.env

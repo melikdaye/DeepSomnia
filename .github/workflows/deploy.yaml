@@ -33,10 +33,6 @@ jobs:
             echo CONTRACT_ADRESS=${{ secrets.CONTRACT_ADRESS }} >> ./deep_somnia_react/.env
             echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./deep_somnia_react/.env
             echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./deep_somnia_react/.env
-      
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      
-
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -60,8 +56,6 @@ jobs:
              docker build -t $ECR_REGISTRY/deepsomnia/deep-somnia-client ./deep_somnia_react
              docker push $ECR_REGISTRY/deepsomnia/deep-somnia-client
              
-          
-
       - name: Upload package to S3 bucket
         run: aws s3 cp docker-compose.yaml s3://elasticbeanstalk-eu-central-1-353150515107/
 

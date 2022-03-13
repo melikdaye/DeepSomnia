@@ -13,26 +13,26 @@ jobs:
         run: |
             touch ./node_server/.env
             echo DB_URI=${{ secrets.DB_URI }} >> ./node_server/.env
-#           echo AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} >> ./node_server/.env
-#           echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }} >> ./node_server/.env
-#           echo AWS_REGION=${{ secrets.AWS_REGION }} >> ./node_server/.env
-#           echo AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }} >> ./node_server/.env
-#           echo AWS_URL_PREFIX=${{ secrets.AWS_URL_PREFIX }} >> ./node_server/.env
-#           echo MQTT_SERVER_IP=${{ secrets.MQTT_SERVER_IP }} >> ./node_server/.env
-#           echo MQTT_SERVER_PORT=${{ secrets.MQTT_SERVER_PORT }} >> ./node_server/.env
-#           echo MQTT_USERNAME=${{ secrets.MQTT_USERNAME }} >> ./node_server/.env
-#           echo MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }} >> ./node_server/.env
-#           echo JWT_KEY=${{ secrets.JWT_KEY }} >> ./node_server/.env
-#           echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./node_server/.env
-#           echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./node_server/.env
-#           echo MAIL_SERVICE=${{ secrets.MAIL_SERVICE }} >> ./node_server/.env
-#           echo APP_MAIL=${{ secrets.APP_MAIL }} >> ./node_server/.env
-#           echo APP_MAIL_PASSWORD=${{ secrets.APP_MAIL_PASSWORD }} >> ./node_server/.env
-#           touch ./deep_somnia_react/.env
-#           echo CONTRACT_JSON=${{ secrets.CONTRACT_JSON }} >> ./deep_somnia_react/.env
-#           echo CONTRACT_ADRESS=${{ secrets.CONTRACT_ADRESS }} >> ./deep_somnia_react/.env
-#           echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./deep_somnia_react/.env
-#           echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./deep_somnia_react/.env
+            echo AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} >> ./node_server/.env
+            echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }} >> ./node_server/.env
+            echo AWS_REGION=${{ secrets.AWS_REGION }} >> ./node_server/.env
+            echo AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }} >> ./node_server/.env
+            echo AWS_URL_PREFIX=${{ secrets.AWS_URL_PREFIX }} >> ./node_server/.env
+            echo MQTT_SERVER_IP=${{ secrets.MQTT_SERVER_IP }} >> ./node_server/.env
+            echo MQTT_SERVER_PORT=${{ secrets.MQTT_SERVER_PORT }} >> ./node_server/.env
+            echo MQTT_USERNAME=${{ secrets.MQTT_USERNAME }} >> ./node_server/.env
+            echo MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }} >> ./node_server/.env
+            echo JWT_KEY=${{ secrets.JWT_KEY }} >> ./node_server/.env
+            echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./node_server/.env
+            echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./node_server/.env
+            echo MAIL_SERVICE=${{ secrets.MAIL_SERVICE }} >> ./node_server/.env
+            echo APP_MAIL=${{ secrets.APP_MAIL }} >> ./node_server/.env
+            echo APP_MAIL_PASSWORD=${{ secrets.APP_MAIL_PASSWORD }} >> ./node_server/.env
+            touch ./deep_somnia_react/.env
+            echo CONTRACT_JSON=${{ secrets.CONTRACT_JSON }} >> ./deep_somnia_react/.env
+            echo CONTRACT_ADRESS=${{ secrets.CONTRACT_ADRESS }} >> ./deep_somnia_react/.env
+            echo ALCHEMY_API_URL=${{ secrets.ALCHEMY_API_URL }} >> ./deep_somnia_react/.env
+            echo GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }} >> ./deep_somnia_react/.env
       
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       

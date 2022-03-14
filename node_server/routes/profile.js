@@ -6,13 +6,11 @@ const userModel = require("../models/userModel")
 const { isEmpty } = require("lodash");
 const {send_dream} = require("../utils/mqtt_client")
 const mongoose = require('mongoose');
-const {json} = require("express");
-
 
 router.get("/",auth,async (req,res) => {
     try {
         const userId = req.user.id;
-        const NFTs = await nftModel.find({ userId });
+        const NFTs = await nftModel.find({ userId }).sort({createdAt:-1});
         const user = await userModel.findById(userId);
         if (user.credits===0) {
             console.log(user.lastCreation)
@@ -54,7 +52,7 @@ router.post("/imagine",auth,async (req,res) => {
                 user.lastCreation = Date.now();
                 user.credits-=1;
                 await user.save()
-                return res.status(200).send({message: "Creation is started and it will be ready in 5-15 minutes"})
+                return res.status(200).send({message: "Creation is started and it will be ready in 5-15 minutes",credits:user.credits})
             }
             catch(err){
                 console.log(err)

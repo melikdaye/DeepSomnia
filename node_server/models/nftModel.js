@@ -50,6 +50,10 @@ const nftSchema = mongoose.Schema({
         required : false,
         default : {}
     },
+    isReady : {
+        type: Boolean,
+        default: true
+    },
     createdAt: {
         type: Date,
         default: Date.now()

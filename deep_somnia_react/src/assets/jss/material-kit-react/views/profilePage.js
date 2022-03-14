@@ -119,8 +119,24 @@ const profilePageStyle = {
     marginTop : "-20px"
   },
 
-
-
+  imageOverlay : {
+  position: "absolute",
+  top : "0",
+  background: "rgba(0, 0, 0, 0.5)",
+  color: "#f1f1f1",
+  width: "90%",
+  height:"88%",
+  transition: ".5s ease",
+  opacity:"1",
+  fontSize: "20px",
+  textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+   alignItems: "center",
+    "&:hover":{
+      opacity:"0",
+    }
+  }
 
 };
 

@@ -17,7 +17,7 @@ import NavPills from "../components/NavPills/NavPills.js";
 import Parallax from "../components/Parallax/Parallax.js";
 import styles from "../assets/jss/material-kit-react/views/profilePage.js";
 import background from "../assets/img/bg-whale.png";
-import {Add, LockRounded, Settings} from "@material-ui/icons";
+import {Add, GavelOutlined, LockRounded, Settings} from "@material-ui/icons";
 import {Snackbar, TextField} from "@material-ui/core";
 import axios from "axios";
 import {Link,Redirect} from "react-router-dom";
@@ -27,6 +27,7 @@ import {connect} from "react-redux";
 import {setNFTs} from "../redux/actions/NFTs";
 import {getServer} from "../utils/getServerName";
 import ResetPass from "./ResetPass";
+import {setCredits} from "../redux/actions/user";
 
 const useStyles = makeStyles(styles);
 
@@ -61,7 +62,12 @@ const ProfilePage = (props) =>  {
               if (response.status === 200) {
                   setDream("")
                   setResponse(response.data.message)
+                  props.setCredits(response.data.credits)
                   setOpen(true);
+                  setTimeout(function(){
+                      document.getElementById("My NFTs").click()
+                  }, 5000);
+
 
               }
           })
@@ -210,6 +216,7 @@ const ProfilePage = (props) =>  {
                                                                   alt={nft.name}
                                                                   className={navImageClasses}
                                                               />
+                                                              {!(nft.isReady === true || nft.isReady === undefined)&&<div id={`overlay-${nft._id}`} className={classes.imageOverlay}>Under Construction<GavelOutlined/></div>}
                                                                   </Link>
 
 
@@ -288,6 +295,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setNFTs : myNFTs => dispatch(setNFTs(myNFTs)),
+    setCredits : credits =>dispatch(setCredits(credits))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProfilePage);

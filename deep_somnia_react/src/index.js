@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {getServer} from "./utils/getServerName";
 
-if (getServer() === "api")
+if (getServer().includes("api"))
     console.log = () => {};
 
 ReactDOM.render(

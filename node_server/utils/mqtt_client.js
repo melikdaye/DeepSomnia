@@ -20,16 +20,19 @@ function get_client () {
     client.on('connect', () => {
         client.subscribe([topic], () => {
         })
-        client.subscribe(["dream/status"], () => {
-        })
+        // client.subscribe(["dream/status"], () => {
+        // })
 
     })
-    client.on('message',(topic,message,packet)=>{
-        console.log(topic,message)
-        if(topic === "dream/status"){
-            console.log(JSON.parse(message.toString()).progress)
-        }
-    })
+    // client.on('message',(topic,message,packet)=>{
+    //     console.log(topic,message)
+    //     if(topic === "dream/status"){
+    //         let body = JSON.parse(message.toString());
+    //         if(body.progress>90)
+    //             nftModel.updateOne({_id: body.ID}, {$set: {isReady: true}});
+    //
+    //     }
+    // })
     return client
 }
 

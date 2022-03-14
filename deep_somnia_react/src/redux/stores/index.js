@@ -7,7 +7,7 @@ import {getServer} from "../../utils/getServerName";
 
 
 const middlewares = [];
-if (getServer() !== "api")
+if (!(getServer().includes("api")))
     middlewares.push(logger)
 const store = createStore(reducers,{},applyMiddleware(...middlewares));
 export const persistor = persistStore(store);

@@ -7,7 +7,14 @@ export const userReducer = (state = {currentUser: null},action) => {
                 ...state,
                 currentUser: action.payload
             };
+        case UserActionTypes.SET_USER_CREDITS:
+            return {
+                ...state,
+                currentUser: {...state.currentUser,credits : action.payload}
+            }
         default:
             return state;
     }
 }
+
+

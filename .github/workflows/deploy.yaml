@@ -2,7 +2,7 @@ name: Deploy All
 on:
   push:
     branches:
-      - master
+      - xavier
 
 jobs:
   build:
@@ -44,24 +44,25 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-nginx ./nginx
+             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-nginx ./nginx --platform=linux/arm64
              docker push $ECR_REGISTRY/deepsomnia:deep-somnia-nginx 
-             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-server  ./node_server
+             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-server  ./node_server --platform=linux/arm64
              docker push $ECR_REGISTRY/deepsomnia:deep-somnia-server 
-             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-client  ./deep_somnia_react
+             docker build -t $ECR_REGISTRY/deepsomnia:deep-somnia-client  ./deep_somnia_react --platform=linux/arm64
              docker push $ECR_REGISTRY/deepsomnia:deep-somnia-client
              
       - name: Upload package to S3 bucket
-        run: aws s3 cp docker-compose.yaml s3://elasticbeanstalk-eu-central-1-353150515107/
+        run: aws s3 cp docker-compose.yaml s3://deepsomniaprod/
 
-      - name: Create new ElasticBeanstalk Application Version
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name DeepSomnia \
-          --source-bundle S3Bucket="elasticbeanstalk-eu-central-1-353150515107",S3Key="docker-compose.yaml" \
-          --version-label "ver-${{ github.sha }}" \
-          --description "commit-sha-${{ github.sha }}"
-          
-      - name: Deploy new ElasticBeanstalk Application Version
-        run: aws elasticbeanstalk update-environment --environment-name Deepsomnia-env-1 --version-label "ver-${{ github.sha }}"
+      - name: Remote ssh into prod server
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.prodHost }}
+            username: ${{ secrets.prodUsername }}
+            password: ${{ secrets.prodPass }}
+            port: ${{ secrets.prodPort }}
+            script: |
+              aws s3 cp s3://deepsomniaprod/docker-compose.yaml  deepSomnia/docker-compose.yaml
+              cd deepSomnia
+              docker-compose up
 

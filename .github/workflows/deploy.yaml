@@ -54,7 +54,7 @@ jobs:
         run: echo "Hey"
 
       - name: Build proxy
-        if: $BUILD_PROXY
+        if: ${{BUILD_PROXY}}
         run: docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-nginx ./nginx --platform=linux/arm64 --push
       - name: Build backend
         if: $BUILD_BACKEND

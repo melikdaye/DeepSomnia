@@ -53,11 +53,11 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         - name : Build proxy
-          if: $BUILD_PROXY == 'true'
           run : docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-nginx ./nginx --platform=linux/arm64 --push
-        run: |
-          docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-server  ./node_server --platform=linux/arm64 --push
-          docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-client  ./deep_somnia_react --platform=linux/arm64 --push
+        - name : Others
+          run: |
+            docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-server  ./node_server --platform=linux/arm64 --push
+            docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-client  ./deep_somnia_react --platform=linux/arm64 --push
 
       - name: Upload package to S3 bucket
         run: aws s3 cp docker-compose.yaml s3://deepsomniaprod/

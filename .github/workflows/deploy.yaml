@@ -7,11 +7,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_CLIENT: false
+      BUILD_PROXY: false
+      BUILD_BACKEND: true
     steps:
-      - env:
-          BUILD_CLIENT: false
-          BUILD_PROXY: false
-          BUILD_BACKEND: true
       - uses: actions/checkout@v2
       - name: Create server env file
         run: |

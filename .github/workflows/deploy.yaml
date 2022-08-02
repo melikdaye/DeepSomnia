@@ -52,6 +52,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: echo "Hey"
 
       - name: Build proxy
         if: $BUILD_PROXY

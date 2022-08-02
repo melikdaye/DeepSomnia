@@ -3,15 +3,15 @@ on:
   push:
     branches:
       - xavier
-env:
-  BUILD_CLIENT: false
-  BUILD_PROXY: false
-  BUILD_BACKEND: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - env:
+          BUILD_CLIENT: false
+          BUILD_PROXY: false
+          BUILD_BACKEND: true
       - uses: actions/checkout@v2
       - name: Create server env file
         run: |

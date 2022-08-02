@@ -52,7 +52,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        - run: |
+        run: |
           docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-nginx ./nginx --platform=linux/arm64 --push
           docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-server  ./node_server --platform=linux/arm64 --push
           docker buildx build  -t $ECR_REGISTRY/deepsomnia:deep-somnia-client  ./deep_somnia_react --platform=linux/arm64 --push
